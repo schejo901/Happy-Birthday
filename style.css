@@ -1,0 +1,166 @@
+body {
+    background: linear-gradient(135deg, #ffd6e8, #fff0f6);
+    color: #7a2c52;
+    font-family: 'Pacifico', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100svh;
+    margin: 0;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.container {
+    margin-top: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Titel */
+h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
+    animation: floatIn 1.5s ease-out;
+}
+
+/* Schmetterlinge */
+.butterflies {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.butterflies span {
+    position: absolute;
+    font-size: 24px;
+    animation: fly 6s infinite ease-in-out;
+}
+
+.butterflies span:nth-child(1) { left: -120px; animation-delay: 0s; }
+.butterflies span:nth-child(2) { left: 0; animation-delay: 2s; }
+.butterflies span:nth-child(3) { left: 120px; animation-delay: 4s; }
+
+/* Animation */
+.animation-container {
+    width: 320px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    overflow: visible; /* WICHTIG */
+}
+
+.animation-container lottie-player {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transform-origin: center bottom;
+}
+
+/* Klick-Hinweis */
+#click-hint {
+    margin-top: 12px;
+    font-size: 16px;
+    opacity: 0.75;
+    animation: hintPulse 1.5s infinite;
+}
+
+/* Animationen */
+@keyframes fly {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    50% { transform: translateY(-30px) rotate(10deg); }
+    100% { transform: translateY(-60px) rotate(-10deg); opacity: 0; }
+}
+
+@keyframes floatIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hintPulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.4; }
+}
+
+/* Feuerwerk */
+#fireworks {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.pixel {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    animation: pixelMove 2s ease-out forwards;
+}
+
+@keyframes pixelMove {
+    from { transform: translate(0, 0); opacity: 1; }
+    to { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 1200px) {
+    h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .animation-container {
+        width: 320px; /* Container bleibt gleich */
+    }
+
+    .animation-container lottie-player {
+        transform: scale(); /* 👈 NUR skalieren */
+    }
+
+    #click-hint {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+}
+
+/* Zweiter Hint */
+#second-hint {
+    position: relative;
+    margin-top: 24px;
+    font-size: 18px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: none;
+    pointer-events: none;
+    text-align: center;
+
+    /* leichte Rechtsverschiebung */
+    left: 10;
+}
+
+/* Sichtbar-Status */
+#second-hint.show {
+    animation: secondHintFade 1.4s ease-out forwards;
+}
+
+/* Pfeil */
+
+
+/* Animationen */
+@keyframes secondHintFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 0.85;
+        transform: translateY(0);
+    }
+}
+
